@@ -142,6 +142,54 @@ All mount points on 192.168.50.10:
 
 192.168.50.11:/srv/share
 
+Проверяем клиент:
+
+tw4@tw4-VB:~/5-NFS$ vagrant ssh nfsc
+
+Last login: Sat Nov 19 19:12:52 2022 from 10.0.2.2
+
+[vagrant@nfsc ~]$ showmount -a 192.168.50.10
+
+All mount points on 192.168.50.10:
+
+[vagrant@nfsc ~]$ cd /mnt/upload
+
+[vagrant@nfsc upload]$ mount | grep mnt
+
+systemd-1 on /mnt type autofs (rw,relatime,fd=33,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=11261)
+
+192.168.50.10:/srv/share/ on /mnt type nfs (rw,relatime,vers=3,rsize=32768,wsize=32768,namlen=255,hard,proto=udp,timeo=11,retrans=3,sec=sys,mountaddr=192.168.50.10,mountvers=3,mountport=20048,mountproto=udp,local_lock=none,addr=192.168.50.10)
+
+[vagrant@nfsc upload]$ ll
+
+total 0
+
+-rw-r--r--. 1 root      root      0 Nov 19 18:02 check_file
+
+-rw-r--r--. 1 nfsnobody nfsnobody 0 Nov 19 18:18 client_file
+
+-rw-rw-r--. 1 vagrant   vagrant   0 Nov 19 18:48 file
+
+-rw-rw-r--. 1 vagrant   vagrant   0 Nov 19 18:48 file2
+
+[vagrant@nfsc upload]$ touch final_file
+
+[vagrant@nfsc upload]$ ll
+
+total 0
+
+-rw-r--r--. 1 root      root      0 Nov 19 18:02 check_file
+
+-rw-r--r--. 1 nfsnobody nfsnobody 0 Nov 19 18:18 client_file
+
+-rw-rw-r--. 1 vagrant   vagrant   0 Nov 19 18:48 file
+
+-rw-rw-r--. 1 vagrant   vagrant   0 Nov 19 18:48 file2
+
+-rw-rw-r--. 1 vagrant   vagrant   0 Nov 19 19:56 final_file
+
+
+
 
 
 
