@@ -55,5 +55,18 @@ total 0
 
 Файлы на месте, значит права на доступ к upload работают.
 
+Теперь проверим работоспособность клиентской части после перезапуска и правильность настройки автомонтирования:
+
+```bash
+
+tw4@tw4-VB:~/5-NFS$ vagrant ssh nfsc
+Last login: Sat Nov 19 17:39:55 2022 from 10.0.2.2
+[vagrant@nfsc ~]$ cd /mnt/upload
+[vagrant@nfsc upload]$ ll
+total 0
+-rw-r--r--. 1 root      root      0 Nov 19 18:02 check_file
+-rw-r--r--. 1 nfsnobody nfsnobody 0 Nov 19 18:18 client_file
+
+```
 
 
